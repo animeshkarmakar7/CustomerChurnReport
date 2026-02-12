@@ -1,0 +1,22 @@
+================================================================================
+MODEL TRAINING REPORT
+================================================================================
+
+Best Model: Logistic Regression
+Model Type: LogisticRegression
+
+PERFORMANCE METRICS:
+----------------------------------------
+ACCURACY: 0.7495
+AUC: 0.8398
+F1: 0.6176
+
+Total Features: 21
+
+OUTPUT FILES:
+----------------------------------------
+- D:\CustomerEarlyRisk\models\churn_predictor_xgboost.pkl
+- D:\CustomerEarlyRisk\models\feature_scaler.pkl
+- D:\CustomerEarlyRisk\models\model_metadata.json
+
+================================================================================

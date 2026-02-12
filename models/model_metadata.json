@@ -1,0 +1,38 @@
+{
+  "model_name": "Logistic Regression",
+  "model_type": "LogisticRegression",
+  "performance_metrics": {
+    "accuracy": 0.7494677075940384,
+    "auc": 0.8398124467178175,
+    "f1": 0.6175514626218852
+  },
+  "feature_count": 21,
+  "feature_names": [
+    "SeniorCitizen",
+    "Partner",
+    "Dependents",
+    "tenure",
+    "PhoneService",
+    "MultipleLines",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "PaperlessBilling",
+    "MonthlyCharges",
+    "TotalCharges",
+    "ltv",
+    "engagement_score",
+    "charges_per_tenure",
+    "has_multiple_services",
+    "is_new_customer",
+    "is_high_value"
+  ],
+  "training_config": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "cv_folds": 5
+  }
+}

@@ -1,0 +1,28 @@
+================================================================================
+MODEL EVALUATION REPORT
+SaaS Customer Churn Prediction
+================================================================================
+
+MODEL PERFORMANCE:
+----------------------------------------
+ROC-AUC Score: 0.8414
+PR-AUC Score: 0.6617
+
+BUSINESS IMPACT:
+----------------------------------------
+High-Risk Customers: 2,178
+Annual Revenue at Risk: $2,024,619.00
+Potential ARR Saved: $607,385.70
+ROI: 458%
+
+VISUALIZATIONS GENERATED:
+----------------------------------------
+- 10_confusion_matrix.png
+- 11_roc_pr_curves.png
+- 12_feature_importance_shap.png
+
+OUTPUT FILES:
+----------------------------------------
+- D:\CustomerEarlyRisk\data\processed\model_predictions.csv
+
+================================================================================

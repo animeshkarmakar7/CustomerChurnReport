@@ -1,0 +1,30 @@
+================================================================================
+FEATURE ENGINEERING REPORT
+================================================================================
+
+Total Features: 35
+Total Samples: 7043
+
+DERIVED FEATURES CREATED:
+----------------------------------------
+1. ltv - Customer Lifetime Value
+2. engagement_score - Number of services used
+3. tenure_group - Categorical tenure bins
+4. charges_per_tenure - Average monthly spend
+5. monthly_charges_category - Spending tier
+6. has_multiple_services - Binary flag
+7. is_new_customer - Tenure < 6 months
+8. is_high_value - Top 25% by LTV
+
+ENCODING APPLIED:
+----------------------------------------
+- Binary encoding for Yes/No columns
+- One-hot encoding for multi-class categories
+- Target variable (Churn) encoded as 0/1
+
+OUTPUT FILES:
+----------------------------------------
+- D:\CustomerEarlyRisk\data\processed\customer_features.csv
+- D:\CustomerEarlyRisk\data\processed\feature_names.json
+
+================================================================================

@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Data files (optional - uncomment if data is large)
+# data/raw/*.csv
+# data/processed/*.csv
+
+# Model files (optional - uncomment if models are large)
+# models/*.pkl
+# models/*.joblib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reports
+*.pdf
+*.pptx
+reports/*.pdf
+reports/*.pptx
+
+# Power BI
+*.pbix
+dashboards/*.pbix
