@@ -1,6 +1,4 @@
-"""
-Quick diagnostic and fix script for the Churn encoding issue
-"""
+
 import pandas as pd
 from pathlib import Path
 

@@ -1,6 +1,4 @@
-"""
-Quick fix script to properly encode Churn column
-"""
+
 import pandas as pd
 from pathlib import Path
 
@@ -41,7 +39,7 @@ df['is_new_customer'] = (df['tenure'] <= 6).astype(int)
 ltv_threshold = df['ltv'].quantile(0.75)
 df['is_high_value'] = (df['ltv'] >= ltv_threshold).astype(int)
 
-print(f"\n✓ Created 8 derived features")
+print(f"\nCreated 8 derived features")
 
 # Binary encoding for Yes/No columns
 for col in df.columns:
@@ -50,14 +48,14 @@ for col in df.columns:
         if set(unique_vals).issubset({'Yes', 'No', 'No internet service', 'No phone service'}):
             df[col] = df[col].map({'Yes': 1, 'No': 0, 'No internet service': 0, 'No phone service': 0})
 
-print(f"✓ Binary encoded Yes/No columns")
+print(f"Binary encoded Yes/No columns")
 
 # One-hot encoding for categorical
 categorical_cols = ['Contract', 'PaymentMethod', 'InternetService', 'tenure_group', 'monthly_charges_category']
 categorical_cols = [col for col in categorical_cols if col in df.columns]
 df = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
 
-print(f"✓ One-hot encoded {len(categorical_cols)} columns")
+print(f"One-hot encoded {len(categorical_cols)} columns")
 
 # CRITICAL: Encode Churn LAST
 print(f"\nChurn column before final encoding: {df['Churn'].value_counts().to_dict()}")
@@ -70,7 +68,7 @@ output_path = Path('data/processed/customer_features.csv')
 output_path.parent.mkdir(parents=True, exist_ok=True)
 df.to_csv(output_path, index=False)
 
-print(f"\n✓ Saved to: {output_path}")
+print(f"\n Saved to: {output_path}")
 print(f"  Final shape: {df.shape}")
 print(f"  Churn encoded: {df['Churn'].value_counts().to_dict()}")
 
