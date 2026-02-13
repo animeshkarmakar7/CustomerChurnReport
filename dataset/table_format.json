@@ -1,0 +1,204 @@
+{
+  "table_name": "Customer Churn Analysis Tables",
+  "tables": [
+    {
+      "name": "Customer Detail Table (Left)",
+      "columns": [
+        "customerID",
+        "Sum of churn_probability",
+        "Sum of MonthlyCharges"
+      ],
+      "formatting_steps": [
+        {
+          "step": 1,
+          "action": "Format Column Headers",
+          "settings": {
+            "background_color": "#1976D2",
+            "font_color": "#FFFFFF",
+            "font_family": "Segoe UI Semibold",
+            "font_size": 11,
+            "text_alignment": "Left",
+            "padding": 8
+          }
+        },
+        {
+          "step": 2,
+          "action": "Format Table Grid",
+          "settings": {
+            "vertical_gridlines": true,
+            "horizontal_gridlines": true,
+            "gridline_color": "#E0E0E0",
+            "gridline_thickness": 1,
+            "row_padding": 6
+          }
+        },
+        {
+          "step": 3,
+          "action": "Alternating Row Colors",
+          "settings": {
+            "primary_background": "#FFFFFF",
+            "secondary_background": "#F5F5F5",
+            "font_color": "#212529",
+            "font_size": 10
+          }
+        },
+        {
+          "step": 4,
+          "action": "Conditional Formatting - churn_probability",
+          "type": "Background Color Gradient",
+          "rules": {
+            "minimum": {
+              "value": 0,
+              "color": "#E8F5E9"
+            },
+            "midpoint": {
+              "value": 0.5,
+              "color": "#FFF9C4"
+            },
+            "maximum": {
+              "value": 1,
+              "color": "#FFCDD2"
+            }
+          }
+        },
+        {
+          "step": 5,
+          "action": "Conditional Formatting - MonthlyCharges",
+          "type": "Data Bars",
+          "settings": {
+            "bar_color": "#42A5F5",
+            "show_value": true,
+            "direction": "left_to_right"
+          }
+        },
+        {
+          "step": 6,
+          "action": "Format Total Row",
+          "settings": {
+            "background_color": "#BBDEFB",
+            "font_family": "Segoe UI Bold",
+            "font_size": 11,
+            "font_color": "#0D47A1",
+            "top_border": true,
+            "border_color": "#1976D2",
+            "border_thickness": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "Risk Segment Summary (Middle)",
+      "columns": [
+        "risk_segment",
+        "Month-to-Month",
+        "One Year",
+        "Total"
+      ],
+      "formatting_steps": [
+        {
+          "step": 1,
+          "action": "Format Column Headers",
+          "settings": {
+            "background_color": "#455A64",
+            "font_color": "#FFFFFF",
+            "font_family": "Segoe UI Semibold",
+            "font_size": 11
+          }
+        },
+        {
+          "step": 2,
+          "action": "Conditional Formatting - risk_segment",
+          "type": "Background Color by Value",
+          "rules": [
+            {
+              "if_value": "Critical",
+              "background": "#D32F2F",
+              "font_color": "#FFFFFF"
+            },
+            {
+              "if_value": "High",
+              "background": "#F57C00",
+              "font_color": "#FFFFFF"
+            },
+            {
+              "if_value": "Medium",
+              "background": "#FBC02D",
+              "font_color": "#212529"
+            },
+            {
+              "if_value": "Low",
+              "background": "#7CB342",
+              "font_color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "Format Numeric Columns",
+          "settings": {
+            "number_format": "#,##0.00",
+            "alignment": "Right",
+            "font_family": "Segoe UI",
+            "font_size": 10
+          }
+        },
+        {
+          "step": 4,
+          "action": "Format Total Row",
+          "settings": {
+            "background_color": "#CFD8DC",
+            "font_family": "Segoe UI Bold",
+            "font_size": 11,
+            "top_border": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer Revenue Table (Right)",
+      "columns": [
+        "customerID",
+        "Cumulative Revenue %",
+        "Total LTV"
+      ],
+      "formatting_steps": [
+        {
+          "step": 1,
+          "action": "Format Headers",
+          "settings": {
+            "background_color": "#1976D2",
+            "font_color": "#FFFFFF",
+            "font_family": "Segoe UI Semibold"
+          }
+        },
+        {
+          "step": 2,
+          "action": "Conditional Formatting - Cumulative Revenue %",
+          "type": "Color Scale",
+          "rules": {
+            "minimum": {
+              "value": 0,
+              "color": "#E3F2FD"
+            },
+            "maximum": {
+              "value": 1,
+              "color": "#1976D2"
+            },
+            "font_color_threshold": 0.5,
+            "dark_font": "#212529",
+            "light_font": "#FFFFFF"
+          }
+        },
+        {
+          "step": 3,
+          "action": "Format Total LTV",
+          "settings": {
+            "number_format": "#,##0.00",
+            "data_bars": true,
+            "bar_color": "#66BB6A"
+          }
+        }
+      ]
+    }
+  ]
+}

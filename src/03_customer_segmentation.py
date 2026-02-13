@@ -1,20 +1,3 @@
-"""
-Customer Segmentation using RFM Analysis and K-Means Clustering
-
-This script performs customer segmentation to identify distinct customer groups
-based on their behavior and characteristics.
-
-Segmentation Methods:
-    - RFM Analysis (Recency, Frequency, Monetary)
-    - K-Means Clustering
-    - Churn rate analysis by segment
-
-Output:
-    - data/processed/customer_segments.csv
-    - Segment profiling visualizations
-    - Segmentation report
-"""
-
 import sys
 import os
 from pathlib import Path

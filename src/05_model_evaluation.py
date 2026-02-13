@@ -1,17 +1,3 @@
-"""
-Model Evaluation and Business Insights
-
-This script evaluates the trained churn prediction model, generates detailed
-performance metrics, creates visualizations, and calculates business impact.
-
-Outputs:
-    - Confusion matrix
-    - ROC and Precision-Recall curves
-    - Feature importance analysis (SHAP values)
-    - Customer risk predictions
-    - Business impact calculations
-    - data/processed/model_predictions.csv
-"""
 
 import sys
 import os

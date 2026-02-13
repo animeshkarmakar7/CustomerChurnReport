@@ -1,21 +1,4 @@
-"""
-Feature Engineering Script
 
-This script creates derived features from raw customer data to improve
-machine learning model performance.
-
-Features Created:
-    - Customer Lifetime Value (LTV)
-    - Engagement Score (number of services used)
-    - Tenure Groups
-    - Charges per tenure month
-    - Feature interaction terms
-    - Encoded categorical variables
-
-Output:
-    - data/processed/customer_features.csv
-    - data/processed/feature_names.json
-"""
 
 import sys
 import os
@@ -50,7 +33,7 @@ def load_data():
         query = "SELECT * FROM customers"
         try:
             df = query_to_df(query)
-            print(f"✓ Loaded {len(df)} records from database")
+            print(f" Loaded {len(df)} records from database")
             return df
         except Exception as e:
             print(f"Failed to load from database: {e}")
@@ -58,23 +41,23 @@ def load_data():
     print("Loading data from CSV file...")
     csv_path = Path('D:/CustomerEarlyRisk/dataset/WA_Fn-UseC_-Telco-Customer-Churn.csv')
     df = pd.read_csv(csv_path)
-    print(f"✓ Loaded {len(df)} records from CSV")
+    print(f"Loaded {len(df)} records from CSV")
     return df
 
 
 def clean_data(df):
-    """Clean and preprocess data."""
+
     print("\n" + "=" * 80)
     print("DATA CLEANING")
     print("=" * 80)
     
     df_clean = df.copy()
     
-    # Convert TotalCharges to numeric (handle empty strings)
+   
     if 'TotalCharges' in df_clean.columns:
         df_clean['TotalCharges'] = pd.to_numeric(df_clean['TotalCharges'], errors='coerce')
         
-        # Fill missing TotalCharges with 0 (likely new customers)
+        
         missing_count = df_clean['TotalCharges'].isnull().sum()
         if missing_count > 0:
             print(f"  Filling {missing_count} missing TotalCharges values with 0")
@@ -84,7 +67,7 @@ def clean_data(df):
     if 'SeniorCitizen' in df_clean.columns:
         df_clean['SeniorCitizen'] = df_clean['SeniorCitizen'].map({0: 'No', 1: 'Yes'})
     
-    print(f"✓ Data cleaned. Shape: {df_clean.shape}")
+    print(f" Data cleaned. Shape: {df_clean.shape}")
     return df_clean
 
 
@@ -98,7 +81,7 @@ def create_derived_features(df):
     
     # 1. Customer Lifetime Value (LTV)
     df_features['ltv'] = df_features['tenure'] * df_features['MonthlyCharges']
-    print("✓ Created: ltv (Customer Lifetime Value)")
+    print(" Created: ltv (Customer Lifetime Value)")
     
     # 2. Engagement Score (number of services used)
     service_cols = []
@@ -111,7 +94,7 @@ def create_derived_features(df):
             lambda row: sum(1 for val in row if str(val).lower() in ['yes', 'dsl', 'fiber optic']), 
             axis=1
         )
-        print(f"✓ Created: engagement_score (based on {len(service_cols)} services)")
+        print(f" Created: engagement_score (based on {len(service_cols)} services)")
     
     # 3. Tenure Groups
     df_features['tenure_group'] = pd.cut(
@@ -120,11 +103,11 @@ def create_derived_features(df):
         labels=['0-12mo', '12-24mo', '24-48mo', '48+mo'],
         include_lowest=True
     )
-    print("✓ Created: tenure_group (categorical tenure bins)")
+    print("Created: tenure_group (categorical tenure bins)")
     
     # 4. Charges per tenure month
     df_features['charges_per_tenure'] = df_features['TotalCharges'] / (df_features['tenure'] + 1)
-    print("✓ Created: charges_per_tenure (average monthly spend)")
+    print(" Created: charges_per_tenure (average monthly spend)")
     
     # 5. Monthly charges category
     df_features['monthly_charges_category'] = pd.cut(
@@ -284,7 +267,7 @@ def save_features(df, feature_names):
         
         f.write("=" * 80 + "\n")
     
-    print(f"✓ Saved report to: {report_path}")
+    print(f" Saved report to: {report_path}")
 
 
 def main():

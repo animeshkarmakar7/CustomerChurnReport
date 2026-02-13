@@ -1,0 +1,36 @@
+{
+  "name": "Churn Analytics Professional",
+  "dataColors": ["#D32F2F", "#F57C00", "#FBC02D", "#7CB342", "#0288D1", "#5E35B1", "#C2185B", "#00796B"],
+  "background": "#F8F9FA",
+  "foreground": "#212529",
+  "tableAccent": "#0288D1",
+  "good": "#7CB342",
+  "neutral": "#FBC02D",
+  "bad": "#D32F2F",
+  "maximum": "#D32F2F",
+  "center": "#F57C00",
+  "minimum": "#7CB342",
+  "null": "#ADB5BD",
+  "textClasses": {
+    "callout": {
+      "fontSize": 45,
+      "fontFace": "Segoe UI",
+      "color": "#212529"
+    },
+    "title": {
+      "fontSize": 14,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#212529"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#495057"
+    },
+    "label": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI",
+      "color": "#6C757D"
+    }
+  }
+}

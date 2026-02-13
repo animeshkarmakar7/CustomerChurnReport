@@ -1,6 +1,4 @@
-"""
-Configuration settings for the SaaS Churn Analytics project.
-"""
+
 import os
 from pathlib import Path
 from dotenv import load_dotenv

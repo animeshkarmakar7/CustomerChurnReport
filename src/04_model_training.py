@@ -1,20 +1,4 @@
-"""
-Churn Prediction Model Training
 
-This script trains multiple machine learning models to predict customer churn,
-performs hyperparameter tuning, and saves the best model for production use.
-
-Models Trained:
-    - Logistic Regression (baseline)
-    - Random Forest Classifier
-    - XGBoost Classifier (primary model)
-
-Output:
-    - models/churn_predictor_xgboost.pkl
-    - models/feature_scaler.pkl
-    - models/model_metadata.json
-    - Model performance comparison report
-"""
 
 import sys
 import os
@@ -97,7 +81,6 @@ def prepare_data(df):
 
 
 def split_and_scale_data(X, y):
-    """Split data into train/test sets and scale features."""
     print("\n" + "=" * 80)
     print("SPLITTING AND SCALING DATA")
     print("=" * 80)
@@ -129,7 +112,6 @@ def split_and_scale_data(X, y):
 
 
 def handle_class_imbalance(X_train, y_train):
-    """Handle class imbalance using SMOTE."""
     print("\n" + "=" * 80)
     print("HANDLING CLASS IMBALANCE")
     print("=" * 80)

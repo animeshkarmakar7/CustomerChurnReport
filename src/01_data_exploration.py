@@ -1,22 +1,10 @@
-"""
-Data Exploration and Exploratory Data Analysis (EDA)
 
-This script performs comprehensive exploratory data analysis on the customer churn dataset,
-including statistical summaries, distribution analysis, and correlation studies.
-
-Output:
-    - Statistical summary report
-    - Distribution visualizations
-    - Correlation heatmap
-    - Churn analysis by features
-    - EDA report saved to reports/
-"""
 
 import sys
 import os
 from pathlib import Path
 
-# Add project root to path
+
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
@@ -30,19 +18,17 @@ warnings.filterwarnings('ignore')
 from src.config import PROCESSED_DATA_DIR, VISUALIZATIONS_DIR, REPORTS_DIR, RAW_DATA_DIR
 from src.db_utils import query_to_df, test_connection
 
-# Set visualization style
+
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (12, 6)
 plt.rcParams['font.size'] = 10
 
 
 def load_data():
-    """Load customer data from database or CSV file."""
     print("=" * 80)
     print("LOADING DATA")
     print("=" * 80)
-    
-    # Try loading from database first
+
     if test_connection():
         print("Loading data from PostgreSQL database...")
         query = "SELECT * FROM customers"
@@ -53,7 +39,7 @@ def load_data():
         except Exception as e:
             print(f"Failed to load from database: {e}")
     
-    # Fallback to CSV
+ 
     print("Loading data from CSV file...")
     csv_path = Path('D:/CustomerEarlyRisk/dataset/WA_Fn-UseC_-Telco-Customer-Churn.csv')
     if csv_path.exists():
@@ -65,7 +51,7 @@ def load_data():
 
 
 def basic_info(df):
-    """Display basic dataset information."""
+  
     print("\n" + "=" * 80)
     print("DATASET OVERVIEW")
     print("=" * 80)
@@ -84,7 +70,6 @@ def basic_info(df):
 
 
 def missing_value_analysis(df):
-    """Analyze missing values in the dataset."""
     print("\n" + "=" * 80)
     print("MISSING VALUE ANALYSIS")
     print("=" * 80)
@@ -105,7 +90,7 @@ def missing_value_analysis(df):
     else:
         print("\n✓ No missing values found in the dataset!")
     
-    # Check for empty strings or whitespace
+  
     print("\nChecking for empty strings...")
     for col in df.select_dtypes(include=['object']).columns:
         empty_count = (df[col].str.strip() == '').sum()
@@ -116,7 +101,7 @@ def missing_value_analysis(df):
 
 
 def churn_distribution(df):
-    """Analyze churn distribution."""
+
     print("\n" + "=" * 80)
     print("CHURN DISTRIBUTION")
     print("=" * 80)
@@ -129,21 +114,21 @@ def churn_distribution(df):
     print("\nChurn Percentage:")
     print(churn_pct)
     
-    # Visualize churn distribution
+
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
     
-    # Count plot
+   
     churn_counts.plot(kind='bar', ax=axes[0], color=['#2ecc71', '#e74c3c'])
     axes[0].set_title('Churn Distribution (Count)', fontsize=14, fontweight='bold')
     axes[0].set_xlabel('Churn Status')
     axes[0].set_ylabel('Number of Customers')
     axes[0].set_xticklabels(axes[0].get_xticklabels(), rotation=0)
     
-    # Add value labels on bars
+
     for i, v in enumerate(churn_counts):
         axes[0].text(i, v + 50, str(v), ha='center', fontweight='bold')
     
-    # Pie chart
+   
     colors = ['#2ecc71', '#e74c3c']
     axes[1].pie(churn_counts, labels=churn_counts.index, autopct='%1.1f%%', 
                 colors=colors, startangle=90)
@@ -158,25 +143,25 @@ def churn_distribution(df):
 
 
 def numerical_features_analysis(df):
-    """Analyze numerical features."""
+ 
     print("\n" + "=" * 80)
     print("NUMERICAL FEATURES ANALYSIS")
     print("=" * 80)
     
-    # Identify numerical columns
+   
     numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
     
-    # Remove customerID if present
+ 
     if 'customerID' in numerical_cols:
         numerical_cols.remove('customerID')
     
     print(f"\nNumerical columns: {numerical_cols}")
     
-    # Statistical summary
+   
     print("\nStatistical Summary:")
     print(df[numerical_cols].describe())
     
-    # Distribution plots
+   
     n_cols = len(numerical_cols)
     fig, axes = plt.subplots((n_cols + 2) // 3, 3, figsize=(15, 4 * ((n_cols + 2) // 3)))
     axes = axes.flatten() if n_cols > 1 else [axes]
@@ -187,7 +172,7 @@ def numerical_features_analysis(df):
         axes[idx].set_xlabel(col)
         axes[idx].set_ylabel('Frequency')
     
-    # Hide unused subplots
+   
     for idx in range(n_cols, len(axes)):
         axes[idx].axis('off')
     
@@ -200,21 +185,21 @@ def numerical_features_analysis(df):
 
 
 def categorical_features_analysis(df):
-    """Analyze categorical features."""
+
     print("\n" + "=" * 80)
     print("CATEGORICAL FEATURES ANALYSIS")
     print("=" * 80)
     
-    # Identify categorical columns
+ 
     categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
     
-    # Remove customerID and Churn
+  
     categorical_cols = [col for col in categorical_cols if col not in ['customerID', 'Churn']]
     
     print(f"\nCategorical columns ({len(categorical_cols)}): {categorical_cols}")
     
-    # Value counts for each categorical column
-    for col in categorical_cols[:5]:  # Show first 5
+  
+    for col in categorical_cols[:5]: 
         print(f"\n{col}:")
         print(df[col].value_counts())
     
@@ -222,12 +207,12 @@ def categorical_features_analysis(df):
 
 
 def correlation_analysis(df):
-    """Analyze correlations between features."""
+
     print("\n" + "=" * 80)
     print("CORRELATION ANALYSIS")
     print("=" * 80)
     
-    # Select numerical columns
+  
     numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
     
     # Calculate correlation matrix

@@ -1,6 +1,4 @@
-"""
-Database utility functions for connecting to MySQL and executing queries.
-"""
+
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
@@ -15,12 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_connection():
-    """
-    Create and return a MySQL connection.
     
-    Returns:
-        mysql.connector.connection: Database connection object
-    """
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
         logger.info("MySQL database connection established successfully")
@@ -31,12 +24,7 @@ def get_connection():
 
 
 def get_engine():
-    """
-    Create and return a SQLAlchemy engine for pandas operations.
-    
-    Returns:
-        sqlalchemy.engine.Engine: SQLAlchemy engine object
-    """
+   
     try:
         conn_string = (
             f"mysql+mysqlconnector://{DB_CONFIG['user']}:{DB_CONFIG['password']}"
@@ -51,16 +39,7 @@ def get_engine():
 
 
 def query_to_df(query: str, params: Optional[dict] = None) -> pd.DataFrame:
-    """
-    Execute SQL query and return results as pandas DataFrame.
-    
-    Args:
-        query (str): SQL query to execute
-        params (dict, optional): Query parameters for parameterized queries
-    
-    Returns:
-        pd.DataFrame: Query results as DataFrame
-    """
+   
     try:
         engine = get_engine()
         df = pd.read_sql(query, engine, params=params)
@@ -72,13 +51,7 @@ def query_to_df(query: str, params: Optional[dict] = None) -> pd.DataFrame:
 
 
 def export_table_to_csv(table_name: str, output_path: str) -> None:
-    """
-    Export entire database table to CSV file.
     
-    Args:
-        table_name (str): Name of the table to export
-        output_path (str): Path where CSV file will be saved
-    """
     try:
         query = f"SELECT * FROM {table_name}"
         df = query_to_df(query)
@@ -90,12 +63,7 @@ def export_table_to_csv(table_name: str, output_path: str) -> None:
 
 
 def execute_sql_file(sql_file_path: str) -> None:
-    """
-    Execute SQL commands from a file.
-    
-    Args:
-        sql_file_path (str): Path to SQL file
-    """
+   
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -119,15 +87,7 @@ def execute_sql_file(sql_file_path: str) -> None:
 
 
 def get_table_info(table_name: str) -> pd.DataFrame:
-    """
-    Get column information for a specific table.
     
-    Args:
-        table_name (str): Name of the table
-    
-    Returns:
-        pd.DataFrame: Table column information
-    """
     query = f"""
     SELECT 
         COLUMN_NAME as column_name,
@@ -142,12 +102,7 @@ def get_table_info(table_name: str) -> pd.DataFrame:
 
 
 def test_connection() -> bool:
-    """
-    Test database connection.
     
-    Returns:
-        bool: True if connection successful, False otherwise
-    """
     try:
         conn = get_connection()
         cursor = conn.cursor()
@@ -163,7 +118,7 @@ def test_connection() -> bool:
 
 
 if __name__ == "__main__":
-    # Test the connection when running this file directly
+  
     print("Testing MySQL database connection...")
     if test_connection():
         print("✓ MySQL database connection successful!")
