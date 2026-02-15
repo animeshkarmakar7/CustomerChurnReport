@@ -399,7 +399,14 @@ Provides MySQL connectivity via both `mysql-connector-python` (for raw SQL execu
 
 ## 7. Power BI Dashboard
 
-The dashboard (visible in the attached report image) provides:
+### Dashboard Screenshot
+
+![Power BI Dashboard](./assets/powerbi_dashboard.png)
+*Customer Churn Analytics Dashboard — showing KPIs, risk segmentation, LTV analysis, and revenue metrics*
+
+---
+
+The dashboard provides:
 
 | Panel | Visualisation | Metric |
 |-------|--------------|--------|
