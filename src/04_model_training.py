@@ -101,12 +101,12 @@ def split_and_scale_data(X, y):
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
     
-    print("✓ Features scaled using StandardScaler")
+    print(" Features scaled using StandardScaler")
     
     # Save scaler
     scaler_path = MODELS_DIR / 'feature_scaler.pkl'
     joblib.dump(scaler, scaler_path)
-    print(f"✓ Scaler saved to: {scaler_path}")
+    print(f" Scaler saved to: {scaler_path}")
     
     return X_train_scaled, X_test_scaled, y_train, y_test, scaler, X_train.columns.tolist()
 
@@ -218,8 +218,8 @@ def train_xgboost_with_tuning(X_train, X_test, y_train, y_test):
     
     grid_search.fit(X_train, y_train)
     
-    print(f"\n✓ Best parameters: {grid_search.best_params_}")
-    print(f"✓ Best CV AUC score: {grid_search.best_score_:.4f}")
+    print(f"\n Best parameters: {grid_search.best_params_}")
+    print(f" Best CV AUC score: {grid_search.best_score_:.4f}")
     
     # Best model
     best_model = grid_search.best_estimator_
@@ -242,7 +242,7 @@ def train_xgboost_with_tuning(X_train, X_test, y_train, y_test):
 
 
 def compare_models(models_performance):
-    """Compare performance of all models."""
+    
     print("\n" + "=" * 80)
     print("MODEL COMPARISON")
     print("=" * 80)

@@ -23,7 +23,6 @@ import seaborn as sns
 
 
 def load_data():
-    """Load customer data from database or CSV."""
     print("=" * 80)
     print("LOADING DATA")
     print("=" * 80)
