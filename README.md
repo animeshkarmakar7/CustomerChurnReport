@@ -538,7 +538,7 @@ The analysis reveals a business with **significant churn exposure**: approximate
 | Total ARR at High Risk | **$2,024,640/year** |
 | Estimated Savings (30 % retention) | **~$607,392/year** |
 | Intervention Cost ($50/customer × 2,178) | **$108,900** |
-| **Estimated ROI** | **~458 %** |
+| **Estimated ROI** | **~274 %** |
 
 ### ✅ Final Recommendation
 
